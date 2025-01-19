@@ -15,7 +15,7 @@ btn.addEventListener("click", async () => {
 });
 async function getData() {
   try {
-      document.body.remove(errorMessage);
+      document.body.errorMessage.remove();
     div.innerHTML = "";
     let res = await axios.get(url);
     let POSArr = res.data[0].meanings;
