@@ -2,6 +2,7 @@ let p = document.querySelector("p");
 let inp = document.querySelector("input");
 let btn = document.querySelector("button");
 let div = document.querySelector("div");
+let errorMessage = document.createElement("p");
 let url = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 
 btn.addEventListener("click", async () => {
@@ -14,6 +15,7 @@ btn.addEventListener("click", async () => {
 });
 async function getData() {
   try {
+      document.body.remove(errorMessage);
     div.innerHTML = "";
     let res = await axios.get(url);
     let POSArr = res.data[0].meanings;
@@ -53,7 +55,6 @@ function printMeaning(defArr) {
   }
 }
 function showError(error) {
-  let errorMessage = document.createElement("p");
   errorMessage.style.color = "red";
   errorMessage.innerHTML = `Error: Could not fetch data. Please check the word and try again.`;
   document.body.append(errorMessage);
